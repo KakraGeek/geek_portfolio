@@ -12,7 +12,7 @@ export default function HomePage() {
           The Geek Toolbox
         </h1>
         <p className="text-lg md:text-xl text-dark-text px-4">
-          Custom digital tools for professionals, teams, and entrepreneurs
+          Custom digital tools | WebDev for professionals, teams, and entrepreneurs
         </p>
       </div>
       
