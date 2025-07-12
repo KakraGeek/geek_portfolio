@@ -90,37 +90,33 @@ export default function WorkSamplesCard() {
                   ✕
                 </Button>
               </div>
-              
-              <div className="space-y-4">
-                <p className="text-dark-text leading-relaxed">
-                  {selectedProject.description}
+              {/* Show screenshot for each work sample using direct title comparison for reliability */}
+              <div className="w-full flex flex-col items-center">
+                {/* Make sure the screenshot files are in the public directory and named exactly as referenced */}
+                <img
+                  src={selectedProject.title === workSamples[0].title ? "/efficio_homepage.png" : "/abneg_homepage.png"}
+                  alt={selectedProject.title + ' homepage screenshot'}
+                  className="w-full max-h-[60vh] object-contain rounded-lg border border-soft-gray mb-4"
+                />
+                {/* Show the live preview message for both work samples */}
+                <p className="text-warm-coral font-semibold text-center mb-4">
+                  Live preview not available due to security settings. Please use the button below to visit the site.
                 </p>
-                
-                <div className="bg-soft-gray p-4 rounded-lg">
-                  <h4 className="font-semibold text-dark-text mb-2">Project Details:</h4>
-                  <ul className="space-y-1 text-sm text-dark-text">
-                    <li>• Live URL: <a href={selectedProject.url} target="_blank" rel="noopener noreferrer" className="text-radiant-blue hover:text-vibrant-yellow">{selectedProject.url}</a></li>
-                    <li>• Technology: React, TypeScript, Tailwind CSS</li>
-                    <li>• Deployment: Vercel</li>
-                    <li>• Status: Live and Active</li>
-                  </ul>
-                </div>
-                
-                <div className="flex gap-2 pt-4">
-                  <Button 
-                    onClick={() => handleViewLiveProject(selectedProject)}
-                    className="bg-radiant-blue text-white hover:bg-vibrant-yellow hover:text-dark-text transition-colors duration-200"
-                  >
-                    Visit Live Site
-                  </Button>
-                  <Button 
-                    onClick={closeModal}
-                    variant="outline"
-                    className="border-warm-coral text-warm-coral hover:bg-warm-coral hover:text-white"
-                  >
-                    Close
-                  </Button>
-                </div>
+              </div>
+              <div className="flex gap-2 pt-2">
+                <Button 
+                  onClick={() => handleViewLiveProject(selectedProject)}
+                  className="bg-radiant-blue text-white hover:bg-vibrant-yellow hover:text-dark-text transition-colors duration-200"
+                >
+                  Visit Live Site
+                </Button>
+                <Button 
+                  onClick={closeModal}
+                  variant="outline"
+                  className="border-warm-coral text-warm-coral hover:bg-warm-coral hover:text-white"
+                >
+                  Close
+                </Button>
               </div>
             </div>
           </div>
