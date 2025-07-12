@@ -44,13 +44,17 @@ export default function AboutPage() {
                 Whether it's a <strong className="text-fresh-mint">workflow-driven web application</strong> or a <strong className="text-electric-purple">conversion-focused business website</strong>, I build every solution with two things in mind:
               </p>
               <ul className="mt-4 space-y-2">
-                <li className="flex items-center gap-2">
-                  <span className="text-radiant-blue">➤</span>
-                  What <em>you</em> need it to do
+                <li className="flex items-start gap-2">
+                  <span className="text-radiant-blue mt-1">➤</span>
+                  <span>
+                    What <em>you</em> need it to do
+                  </span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-radiant-blue">➤</span>
-                  What <em>your users</em> need it to feel like
+                <li className="flex items-start gap-2">
+                  <span className="text-radiant-blue mt-1">➤</span>
+                  <span>
+                    What <em>your users</em> need it to feel like
+                  </span>
                 </li>
               </ul>
             </div>
