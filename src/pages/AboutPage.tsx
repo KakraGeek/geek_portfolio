@@ -13,12 +13,13 @@ export default function AboutPage() {
           Why I Built The Geek Toolbox
         </p>
       </div>
-      {/* Accordion for My Journey and My Mission */}
-      {/* Set defaultValue to 'journey' so My Journey is open by default */}
-      <Accordion type="single" collapsible className="w-full rounded-card shadow-lg overflow-hidden" defaultValue="journey">
+      {/* Accordion for My Journey and My Mission with gradient headers */}
+      <Accordion type="single" collapsible className="w-full rounded-card shadow-lg overflow-hidden">
         {/* My Journey Accordion Item - blue gradient header, white content */}
         <AccordionItem value="journey">
-          <AccordionTrigger className="bg-gradient-to-br from-blue-400 to-blue-600 text-white px-6 text-2xl md:text-3xl font-bold">
+          <AccordionTrigger
+            className="bg-gradient-to-br from-blue-400 to-blue-600 text-white font-semibold hover:brightness-110"
+          >
             My Journey
           </AccordionTrigger>
           <AccordionContent className="bg-white text-dark-text px-6 py-6">
@@ -32,7 +33,9 @@ export default function AboutPage() {
         </AccordionItem>
         {/* My Mission Accordion Item - orange gradient header, white content */}
         <AccordionItem value="mission">
-          <AccordionTrigger className="bg-gradient-to-br from-orange-400 to-orange-600 text-white px-6 text-2xl md:text-3xl font-bold">
+          <AccordionTrigger
+            className="bg-gradient-to-br from-orange-400 to-orange-600 text-white font-semibold hover:brightness-110"
+          >
             My Mission
           </AccordionTrigger>
           <AccordionContent className="bg-white text-dark-text px-6 py-6">

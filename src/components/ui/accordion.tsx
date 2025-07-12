@@ -3,10 +3,8 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion"
 
 import { cn } from "@/lib/utils"
 
-// Root Accordion component
 const Accordion = AccordionPrimitive.Root
 
-// AccordionItem wraps each section
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
@@ -19,7 +17,7 @@ const AccordionItem = React.forwardRef<
 ))
 AccordionItem.displayName = "AccordionItem"
 
-// AccordionTrigger is the clickable header
+// Reverted: Simple, modern AccordionTrigger
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
@@ -28,14 +26,14 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex w-full items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
+        "flex w-full items-center justify-between py-4 px-6 text-2xl md:text-3xl font-semibold rounded-lg transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 hover:brightness-105",
         className
       )}
       {...props}
     >
       {children}
       <svg
-        className="h-4 w-4 shrink-0 transition-transform duration-200"
+        className="h-4 w-4 shrink-0 transition-transform duration-200 ml-2"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -50,7 +48,6 @@ const AccordionTrigger = React.forwardRef<
 ))
 AccordionTrigger.displayName = "AccordionTrigger"
 
-// AccordionContent is the collapsible content area
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
