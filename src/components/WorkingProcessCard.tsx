@@ -45,7 +45,7 @@ export default function WorkingProcessCard() {
         ))}
         <div className="mt-6 p-4 bg-white bg-opacity-25 rounded-lg">
           <p className="text-base font-medium text-white">
-            ⚠️ <strong>Feedback is never a "step" to me. It's a cycle that powers everything.</strong>
+            Feedback is continuous, not occasional. It’s how we get it right—together.
           </p>
         </div>
       </CardContent>
