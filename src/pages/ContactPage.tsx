@@ -166,8 +166,8 @@ export default function ContactPage() {
               </div>
             </div>
             
-            <div className="bg-sky-teal/10 text-dark-text font-bold px-6 py-4 rounded-xl shadow my-6 flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-105 hover:brightness-105 text-left text-justify">
-              <span className="flex items-center justify-center w-14 h-14 rounded-full border border-black mr-4">
+            <div className="bg-sky-teal/10 text-dark-text font-bold px-6 py-4 rounded-xl shadow my-6 flex flex-col sm:flex-row items-center sm:items-start justify-center gap-2 transition-transform duration-200 hover:scale-105 hover:brightness-105 text-center sm:text-left">
+              <span className="flex items-center justify-center w-14 h-14 rounded-full border border-black mb-2 sm:mb-0 sm:mr-4">
                 <Handshake className="w-12 h-12" aria-label="Collaboration" />
               </span>
               Don’t let bottlenecks slow you down. Let’s fix them—side by side.
