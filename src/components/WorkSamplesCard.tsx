@@ -8,16 +8,16 @@ import { Dialog, DialogTrigger, DialogContent, DialogClose } from "@/components/
 
 const workSamples = [
   {
-    title: "Business Management Application for Fashion Industry Artisans",
-    description: "A comprehensive business management platform designed for fashion industry artisans. Features dashboard analytics, client management, order tracking, inventory control, payment processing, and detailed reporting — all in one integrated solution.",
+    title: "Business Management Application",
+    description: "Business management for Ghanaian fashion artisans. Effortlessly manage clients, orders, payments, inventory, and view reports—all in one place.",
     type: "🎨 Sample 1",
     url: "https://efficio-seven.vercel.app/",
     external: true,
     borderColor: "border-radiant-blue" // Unique edge color for this card
   },
   {
-    title: "Networking Website and Application for an Association", 
-    description: "A professional networking platform designed for association members. Features member profiles, networking tools, event management, communication channels, and collaborative resources to strengthen community connections and professional relationships.",
+    title: "Members Portal for an Association", 
+    description: "Website for an association with public-facing pages and authenticated access to an application for group management and administrative tasks.",
     type: "🛠️ Sample 2",
     url: "https://abneg-portal-pi.vercel.app/",
     external: true,
@@ -38,8 +38,10 @@ export default function WorkSamplesCard() {
               */}
               <div className={`bg-white rounded-xl shadow-md p-6 flex flex-col gap-2 transition-transform duration-200 ease-in-out hover:scale-105 hover:shadow-lg cursor-pointer border-l-4 ${sample.borderColor}`}>
                 <span className="font-bold text-lg text-radiant-blue flex items-center gap-2">
-                  {sample.type} {sample.title}
+                  {sample.title}
                 </span>
+                {/* Always show the description below the title */}
+                <span className="text-sm text-dark-text mb-1">{sample.description}</span>
                 {/* Row with 'hover for details' and Live View button */}
                 <div className="flex items-center gap-3">
                   <span className="text-sm text-muted-foreground">(Hover for details)</span>
@@ -78,7 +80,7 @@ export default function WorkSamplesCard() {
                       ×
                     </button>
                   </DialogClose>
-                  <h2 className="text-2xl font-bold text-radiant-blue mb-4">{sample.type} {sample.title}</h2>
+                  <h2 className="text-2xl font-bold text-radiant-blue mb-4">{sample.title}</h2>
                   {/* Project screenshot */}
                   <img
                     src={sample.title === workSamples[0].title ? "/efficio_homepage.png" : "/abneg_homepage.png"}
