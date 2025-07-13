@@ -128,13 +128,13 @@ export default function ContactPage() {
               <div className="space-y-1">
                 <a 
                   href="mailto:desmond.asiedu@gmail.com" 
-                  className="text-radiant-blue hover:text-vibrant-yellow transition-colors duration-200 block"
+                  className="text-radiant-blue hover:text-orange-600 transition-colors duration-200 block"
                 >
                   desmond.asiedu@gmail.com
                 </a>
                 <a 
                   href="mailto:thegeektoolbox@gmail.com" 
-                  className="text-radiant-blue hover:text-vibrant-yellow transition-colors duration-200 block"
+                  className="text-radiant-blue hover:text-orange-600 transition-colors duration-200 block"
                 >
                   thegeektoolbox@gmail.com
                 </a>
@@ -146,11 +146,10 @@ export default function ContactPage() {
               <div className="space-y-1">
                 <a 
                   href="tel:+233244299095" 
-                  className="text-radiant-blue hover:text-vibrant-yellow transition-colors duration-200 block"
+                  className="text-radiant-blue hover:text-orange-600 transition-colors duration-200 block"
                 >
                   +233 (0)24-429-9095
                 </a>
-                <p className="text-dark-text text-sm">(WhatsApp available)</p>
               </div>
             </div>
             
@@ -159,7 +158,7 @@ export default function ContactPage() {
               <div className="space-y-1">
                 <a 
                   href="tel:+233202113633" 
-                  className="text-radiant-blue hover:text-vibrant-yellow transition-colors duration-200 block"
+                  className="text-radiant-blue hover:text-orange-600 transition-colors duration-200 block"
                 >
                   020-211-3633
                 </a>
