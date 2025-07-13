@@ -51,15 +51,6 @@ export default function HomePage() {
           <path fill="#fff" fillOpacity="1" d="M0,64L48,58.7C96,53,192,43,288,53.3C384,64,480,96,576,101.3C672,107,768,85,864,80C960,75,1056,85,1152,85.3C1248,85,1344,75,1392,69.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
         </svg>
       </div>
-      {/* Main content below hero */}
-      <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-5xl font-bold text-radiant-blue mb-4">
-          The Geek Toolbox
-        </h1>
-        <p className="text-lg md:text-xl text-dark-text px-4">
-          Custom digital tools | WebDev for professionals, teams, and entrepreneurs
-        </p>
-      </div>
       {/* Tabs for Design Philosophy and How I Work */}
       <Tabs defaultValue="design" className="w-full">
         {/*
