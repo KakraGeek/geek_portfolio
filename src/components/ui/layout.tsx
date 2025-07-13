@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 import { Link, Outlet } from "react-router-dom";
+import ChatbotWidget from "@/components/ChatbotWidget";
 
 export default function Layout({ children }: { children?: ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -86,6 +87,8 @@ export default function Layout({ children }: { children?: ReactNode }) {
           </p>
         </div>
       </footer>
+      {/* Chatbot widget appears on every page */}
+      <ChatbotWidget />
     </div>
   );
 }
