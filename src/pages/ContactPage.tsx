@@ -1,4 +1,5 @@
-// src/pages/ContactPage.tsx
+// ContactPage.tsx
+// This file contains the ContactPage component, which displays the contact form and contact information for the portfolio website.
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
