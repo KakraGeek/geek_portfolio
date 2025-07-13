@@ -1,5 +1,6 @@
 // src/components/WorkingProcessCard.tsx
 
+import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const processSteps = [
@@ -27,28 +28,26 @@ const processSteps = [
 
 export default function WorkingProcessCard() {
   return (
-    <Card className="card card-orange hover:scale-105 transition-transform duration-300">
-      <CardHeader>
-        <CardTitle className="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
-           How I Work
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
+    <div className="rounded-card shadow-lg bg-white p-8 md:p-12 mb-8 flex flex-col gap-6">
+      {/* Card Title */}
+      <h2 className="text-3xl md:text-4xl font-extrabold text-radiant-blue mb-4">How I Work</h2>
+      {/* Card Content */}
+      <div className="space-y-6">
         {processSteps.map((step, index) => (
-          <div key={index} className="flex items-start gap-3">
+          <div key={index} className="flex items-start gap-4">
             <div className={`w-5 h-5 rounded-full ${step.color} flex-shrink-0 mt-1`}></div>
             <div>
-              <h4 className="font-bold text-lg text-white mb-1">{step.step}</h4>
-              <p className="text-white text-lg leading-relaxed">{step.description}</p>
+              <h4 className="font-bold text-xl md:text-2xl text-radiant-blue mb-1">{step.step}</h4>
+              <p className="text-dark-text text-lg leading-relaxed">{step.description}</p>
             </div>
           </div>
         ))}
-        <div className="mt-6 p-4 bg-white bg-opacity-25 rounded-lg">
-          <p className="text-base font-medium text-white">
+        <div className="mt-8 p-4 bg-soft-gray rounded-lg">
+          <p className="text-base font-medium text-dark-text leading-relaxed">
             Feedback is continuous, not occasional. It’s how we get it right—together.
           </p>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
