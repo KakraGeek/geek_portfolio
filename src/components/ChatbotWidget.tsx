@@ -20,16 +20,72 @@ function parseMarkdownQA(md: string) {
   return qaPairs;
 }
 
-// Helper: Find the best matching answer
+// Helper: Find the best matching answer (prioritize strong keywords for all major topics)
 function getBotAnswer(userInput: string, qaPairs: { question: string; answer: string }[]) {
   const input = userInput.toLowerCase();
-  // Try exact match or substring match
-  for (const qa of qaPairs) {
-    if (input.includes(qa.question.toLowerCase().slice(0, 10))) {
+  // Strong keyword mapping for major topics
+  const strongKeywordMap: { [topic: string]: { keywords: string[]; questionIncludes: string } } = {
+    contact: {
+      keywords: ["contact", "email", "reach", "get in touch"],
+      questionIncludes: "contact"
+    },
+    services: {
+      keywords: ["services", "offer", "provide", "do you do", "what can you do"],
+      questionIncludes: "services"
+    },
+    hire: {
+      keywords: ["hire", "available", "work", "freelance", "taking new projects"],
+      questionIncludes: "hire"
+    },
+    video: {
+      keywords: ["video", "edit", "editing", "motion"],
+      questionIncludes: "video"
+    },
+    team: {
+      keywords: ["team", "alone", "solo", "group"],
+      questionIncludes: "team"
+    },
+    responsive: {
+      keywords: ["responsive", "mobile", "phone", "device"],
+      questionIncludes: "responsive"
+    },
+    timeline: {
+      keywords: ["timeline", "how long", "duration", "time", "reply", "respond", "soon"],
+      questionIncludes: "reply"
+    },
+    price: {
+      keywords: ["price", "cost", "charge", "fee", "quote"],
+      questionIncludes: "price"
+    },
+    projects: {
+      keywords: ["project", "built", "work", "examples"],
+      questionIncludes: "project"
+    },
+    philosophy: {
+      keywords: ["philosophy", "design", "style", "approach"],
+      questionIncludes: "philosophy"
+    },
+    realperson: {
+      keywords: ["real person", "human", "are you real"],
+      questionIncludes: "real person"
+    },
+  };
+  // Try strong keyword mapping first
+  for (const topic in strongKeywordMap) {
+    const { keywords, questionIncludes } = strongKeywordMap[topic];
+    const qa = qaPairs.find(qa => qa.question.toLowerCase().includes(questionIncludes));
+    if (qa && keywords.some(kw => input.includes(kw))) {
       return qa.answer;
     }
   }
-  // Try keyword match
+  // Try matching any variant in the grouped question string
+  for (const qa of qaPairs) {
+    const variants = qa.question.split("|").map(v => v.trim().toLowerCase());
+    if (variants.some(variant => variant && input.includes(variant))) {
+      return qa.answer;
+    }
+  }
+  // Try keyword match (fallback)
   for (const qa of qaPairs) {
     const qWords = qa.question.toLowerCase().split(/\W+/);
     if (qWords.some(word => word && input.includes(word))) {
