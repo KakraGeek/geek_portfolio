@@ -22,6 +22,22 @@ const workSamples = [
     url: "https://abneg-portal-pi.vercel.app/",
     external: true,
     borderColor: "border-warm-coral" // Unique edge color for this card
+  },
+  {
+    title: "Website for Commercial Cleaning Business",
+    description: "Professional website for a commercial cleaning company showcasing services, testimonials, and easy contact forms. Features modern design with mobile responsiveness and lead generation optimization.",
+    type: "🧹 Sample 3",
+    url: "https://cleaning-dynamics-web.vercel.app",
+    external: true,
+    borderColor: "border-fresh-mint" // Unique edge color for this card
+  },
+  {
+    title: "Website for Insurance Broker",
+    description: "Comprehensive insurance broker website with policy information, quote calculators, and client portal. Designed for trust and professionalism with seamless user experience and conversion optimization.",
+    type: "🛡️ Sample 4",
+    url: "https://agile-insurance-website.vercel.app",
+    external: true,
+    borderColor: "border-electric-purple" // Unique edge color for this card
   }
 ];
 
@@ -46,7 +62,7 @@ export default function WorkSamplesCard() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         {workSamples.map((sample, index) => (
           <div key={index}>
             {isMobile ? (
@@ -78,7 +94,12 @@ export default function WorkSamplesCard() {
                       <h2 className="text-2xl font-bold text-radiant-blue mb-4">{sample.title}</h2>
                       {/* Project screenshot */}
                       <img
-                        src={sample.title === workSamples[0].title ? "/efficio_homepage.png" : "/abneg_homepage.png"}
+                        src={
+                          sample.title === workSamples[0].title ? "/efficio_homepage.png" : 
+                          sample.title === workSamples[1].title ? "/abneg_homepage.png" :
+                          sample.title === workSamples[2].title ? "/cleaning_dynamics_homepage.png" :
+                          "/agile_insurance_homepage.png"
+                        }
                         alt={sample.title + ' homepage screenshot'}
                         className="max-h-60 w-auto mx-auto rounded-lg border border-soft-gray mb-4"
                       />
@@ -160,7 +181,12 @@ export default function WorkSamplesCard() {
                       <h2 className="text-2xl font-bold text-radiant-blue mb-4">{sample.title}</h2>
                       {/* Project screenshot */}
                       <img
-                        src={sample.title === workSamples[0].title ? "/efficio_homepage.png" : "/abneg_homepage.png"}
+                        src={
+                          sample.title === workSamples[0].title ? "/efficio_homepage.png" : 
+                          sample.title === workSamples[1].title ? "/abneg_homepage.png" :
+                          sample.title === workSamples[2].title ? "/cleaning_dynamics_homepage.png" :
+                          "/agile_insurance_homepage.png"
+                        }
                         alt={sample.title + ' homepage screenshot'}
                         className="max-h-60 w-auto mx-auto rounded-lg border border-soft-gray mb-4"
                       />
