@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Link, Outlet } from "react-router-dom";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import SEO from "@/components/SEO";
 
 export default function Layout({ children }: { children?: ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,8 +15,10 @@ export default function Layout({ children }: { children?: ReactNode }) {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-dark-text">
-      {/* Header with navigation */}
+    <>
+      <SEO />
+      <div className="min-h-screen flex flex-col bg-white text-dark-text">
+        {/* Header with navigation */}
       <header className="w-full bg-white shadow-lg py-4 px-6">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3">
@@ -94,6 +97,7 @@ export default function Layout({ children }: { children?: ReactNode }) {
       {/* Chatbot widget appears on every page */}
       <ChatbotWidget />
     </div>
+    </>
   );
 }
 
