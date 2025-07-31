@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { seoKeywords, metaDescriptions, pageTitles } from '@/data/seo-keywords';
 
@@ -69,133 +69,176 @@ export default function SEO({
   const finalDescription = description || pageData.description;
   const finalKeywords = keywords.length > 0 ? keywords : pageData.keywords;
 
-  // Structured data for rich snippets
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Desmond",
-    "jobTitle": "Professional Web Developer",
-    "description": "Custom digital tools and web applications for businesses, teams, and entrepreneurs in Ghana",
-    "url": "https://desmonds-webdev-portfolio.vercel.app",
-    "image": "https://desmonds-webdev-portfolio.vercel.app/hero_image_1.jpg",
-    "sameAs": [
-      "mailto:desmond.asiedu@gmail.com",
-      "mailto:thegeektoolbox@gmail.com"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "Ghana"
-    },
-    "knowsAbout": [
-      "Web Development",
-      "Custom Web Applications",
-      "Workflow Automation",
-      "Business Process Improvement",
-      "React Development",
-      "TypeScript Development",
-      "Digital Solutions"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "The Geek Toolbox",
-      "description": "Digital studio specializing in custom digital tools and web applications"
+  useEffect(() => {
+    // Update document title
+    document.title = finalTitle;
+    
+    // Update meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
     }
+    metaDescription.setAttribute('content', finalDescription);
+    
+    // Update meta keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.setAttribute('name', 'keywords');
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.setAttribute('content', finalKeywords.join(', '));
+    
+    // Update Open Graph tags
+    updateMetaTag('og:title', finalTitle);
+    updateMetaTag('og:description', finalDescription);
+    updateMetaTag('og:url', currentUrl);
+    updateMetaTag('og:type', type);
+    updateMetaTag('og:image', `https://desmonds-webdev-portfolio.vercel.app${image}`);
+    
+    // Update Twitter Card tags
+    updateMetaTag('twitter:title', finalTitle);
+    updateMetaTag('twitter:description', finalDescription);
+    updateMetaTag('twitter:image', `https://desmonds-webdev-portfolio.vercel.app${image}`);
+    
+    // Update canonical URL
+    updateCanonicalUrl(currentUrl);
+    
+    // Add structured data
+    addStructuredData();
+    
+  }, [location.pathname, finalTitle, finalDescription, finalKeywords, currentUrl, type, image]);
+
+  // Helper function to update meta tags
+  const updateMetaTag = (property: string, content: string) => {
+    let metaTag = document.querySelector(`meta[property="${property}"]`) || 
+                  document.querySelector(`meta[name="${property}"]`);
+    
+    if (!metaTag) {
+      metaTag = document.createElement('meta');
+      if (property.startsWith('og:')) {
+        metaTag.setAttribute('property', property);
+      } else if (property.startsWith('twitter:')) {
+        metaTag.setAttribute('name', property);
+      }
+      document.head.appendChild(metaTag);
+    }
+    metaTag.setAttribute('content', content);
   };
 
-  return (
-    <Helmet>
-      {/* Basic Meta Tags */}
-      <title>{finalTitle}</title>
-      <meta name="description" content={finalDescription} />
-      <meta name="keywords" content={finalKeywords.join(', ')} />
-      <meta name="author" content="Desmond" />
-      <meta name="robots" content="index, follow" />
-      
-      {/* Open Graph Meta Tags */}
-      <meta property="og:title" content={finalTitle} />
-      <meta property="og:description" content={finalDescription} />
-      <meta property="og:image" content={`https://desmonds-webdev-portfolio.vercel.app${image}`} />
-      <meta property="og:url" content={currentUrl} />
-      <meta property="og:type" content={type} />
-      <meta property="og:site_name" content="The Geek Toolbox" />
-      <meta property="og:locale" content="en_US" />
-      
-      {/* Twitter Card Meta Tags */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={finalTitle} />
-      <meta name="twitter:description" content={finalDescription} />
-      <meta name="twitter:image" content={`https://desmonds-webdev-portfolio.vercel.app${image}`} />
-      <meta name="twitter:creator" content="@thegeektoolbox" />
-      
-      {/* Additional SEO Meta Tags */}
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="theme-color" content="#2563eb" />
-      <meta name="msapplication-TileColor" content="#2563eb" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-      <meta name="apple-mobile-web-app-title" content="The Geek Toolbox" />
-      
-      {/* Canonical URL */}
-      <link rel="canonical" href={currentUrl} />
-      
-      {/* Favicon and App Icons */}
-      <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-      <link rel="apple-touch-icon" href="/Geek_Logo_res-removebg-preview.png" />
-      
-      {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
-      
-      {/* Additional Structured Data for Organization */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "The Geek Toolbox",
-          "url": "https://desmonds-webdev-portfolio.vercel.app",
-          "logo": "https://desmonds-webdev-portfolio.vercel.app/Geek_Logo_res-removebg-preview.png",
-          "description": "Custom digital tools and web applications for businesses, teams, and entrepreneurs in Ghana",
-          "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "Ghana"
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+233244299095",
-            "contactType": "customer service",
-            "email": "desmond.asiedu@gmail.com"
-          },
-          "sameAs": [
-            "mailto:desmond.asiedu@gmail.com",
-            "mailto:thegeektoolbox@gmail.com"
-          ]
-        })}
-      </script>
-      
-      {/* Service Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "Web Development Services",
-          "provider": {
-            "@type": "Organization",
-            "name": "The Geek Toolbox"
-          },
-          "description": "Custom web applications, workflow automation, and digital tools for businesses",
-          "areaServed": {
-            "@type": "Country",
-            "name": "Ghana"
-          },
-          "serviceType": [
-            "Web Development",
-            "Custom Software Development",
-            "Business Process Automation",
-            "Workflow Management Systems"
-          ]
-        })}
-      </script>
-    </Helmet>
-  );
+  // Helper function to update canonical URL
+  const updateCanonicalUrl = (url: string) => {
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', url);
+  };
+
+  // Helper function to add structured data
+  const addStructuredData = () => {
+    // Remove existing structured data
+    const existingScripts = document.querySelectorAll('script[type="application/ld+json"]');
+    existingScripts.forEach(script => script.remove());
+    
+    // Person structured data
+    const personData = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Desmond",
+      "jobTitle": "Professional Web Developer",
+      "description": "Custom digital tools and web applications for businesses, teams, and entrepreneurs in Ghana",
+      "url": "https://desmonds-webdev-portfolio.vercel.app",
+      "image": "https://desmonds-webdev-portfolio.vercel.app/hero_image_1.jpg",
+      "sameAs": [
+        "mailto:desmond.asiedu@gmail.com",
+        "mailto:thegeektoolbox@gmail.com"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "Ghana"
+      },
+      "knowsAbout": [
+        "Web Development",
+        "Custom Web Applications",
+        "Workflow Automation",
+        "Business Process Improvement",
+        "React Development",
+        "TypeScript Development",
+        "Digital Solutions"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "The Geek Toolbox",
+        "description": "Digital studio specializing in custom digital tools and web applications"
+      }
+    };
+    
+    addStructuredDataScript(personData);
+    
+    // Organization structured data
+    const organizationData = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "The Geek Toolbox",
+      "url": "https://desmonds-webdev-portfolio.vercel.app",
+      "logo": "https://desmonds-webdev-portfolio.vercel.app/Geek_Logo_res-removebg-preview.png",
+      "description": "Custom digital tools and web applications for businesses, teams, and entrepreneurs in Ghana",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "Ghana"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+233244299095",
+        "contactType": "customer service",
+        "email": "desmond.asiedu@gmail.com"
+      },
+      "sameAs": [
+        "mailto:desmond.asiedu@gmail.com",
+        "mailto:thegeektoolbox@gmail.com"
+      ]
+    };
+    
+    addStructuredDataScript(organizationData);
+    
+    // Service structured data
+    const serviceData = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Web Development Services",
+      "provider": {
+        "@type": "Organization",
+        "name": "The Geek Toolbox"
+      },
+      "description": "Custom web applications, workflow automation, and digital tools for businesses",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Ghana"
+      },
+      "serviceType": [
+        "Web Development",
+        "Custom Software Development",
+        "Business Process Automation",
+        "Workflow Management Systems"
+      ]
+    };
+    
+    addStructuredDataScript(serviceData);
+  };
+
+  // Helper function to add structured data script
+  const addStructuredDataScript = (data: any) => {
+    const script = document.createElement('script');
+    script.setAttribute('type', 'application/ld+json');
+    script.textContent = JSON.stringify(data);
+    document.head.appendChild(script);
+  };
+
+  // This component doesn't render anything visible
+  return null;
 } 
